@@ -15,3 +15,37 @@ https://users.rust-lang.org/t/i-love-rust-but-one-thing-about-modules-is-aweful/
 >Hope it helps.
 
 It sure does! =)
+
+-------------
+
+https://users.rust-lang.org/t/i-love-rust-but-one-thing-about-modules-is-aweful/2930/27
+
+```
+pixel Sep '15
+
+I may be missing the question but when I’m writing applications I usually end up with a structure like:
+
+main.rs
+mod_a\mod.rs
+mod_a\struct_aa.rs
+mod_a\struct_ab.rs
+mod_b\mod.rs
+mod_b\struct_ba.rs
+mod_b\struct_bb.rs
+And yes main.rs 2 has the:
+
+mod mod_a;
+mod mod_b;
+And mod_a\mod.rs 2 has:
+
+mod struct_aa.rs
+mod struct_ab.rs
+But it’s only main.rs 2 and the various mod.rs 2 files that have the “mod” commands. My main.rs 2 also ends up being very small because pub fn main() usually creates a few objects and then jumps into one of those objects to perform the actual work. So the number of “use” commands in main.rs 2 ends up being quite small.
+
+Then where the real work is going on like in struct_aa.rs I have the various includes:
+
+use mod_a::struct_aa::ObjectAaa;
+use mod_b::struct_bb::{ObjectBba, ObjecBbb};
+
+For the objects that source file needs to use/reference. But no “mod” commands there.
+```
